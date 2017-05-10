@@ -1,5 +1,5 @@
 {
-    "name": "bhavik/monolog-mysql",
+    "name": "nenillo/monolog-mysql",
     "license": "BSD-3-Clause",
     "type": "package",
     "description": "Mysql handler for monolog",
