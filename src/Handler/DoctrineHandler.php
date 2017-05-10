@@ -6,7 +6,7 @@ use Doctrine\DBAL\Connection;
 
 /**
  * Doctrine Handler
- * 
+ *
  * @license     New BSD License
  * @copyright   (c) 2014, Bhavik Patel
  * @author      Bhavik Patel
@@ -16,18 +16,18 @@ class DoctrineHandler extends AbstractHandler
 
     /**
      *
-     * @var \Doctrine\DBAL\Connection 
+     * @var \Doctrine\DBAL\Connection
      */
     private $db;
 
     /**
      *
-     * @var type 
+     * @var type
      */
     private $table_name;
 
     /**
-     * 
+     *
      * @param \PDO $db
      */
     public function __construct(Connection $db)
@@ -46,7 +46,7 @@ class DoctrineHandler extends AbstractHandler
 
     /**
      * Writes log.
-     * 
+     *
      * @param   array     $record
      */
     public function write($record)
@@ -57,6 +57,7 @@ class DoctrineHandler extends AbstractHandler
             'channel' => $record['channel'],
             'level' => $record['level'],
             'message' => $record['message'],
+            'context' => json_encode($record['context']),
             'time' => $record['datetime']->format('U'),
         ];
 
@@ -65,7 +66,7 @@ class DoctrineHandler extends AbstractHandler
         foreach ($record as $key => $value)
         {
             $qb->setValue($key, ':' . $key)
-                    ->setParameter($key, $value);
+                ->setParameter($key, $value);
         }
         $qb->execute();
     }
