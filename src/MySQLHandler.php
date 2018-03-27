@@ -29,6 +29,7 @@ class MySQLHandler extends AbstractProcessingHandler
      */
     private $handler_mapping = [
         "Doctrine\DBAL\Connection" => Handler\DoctrineHandler::class,
+        "Doctrine\DBAL\Connections\MasterSlaveConnection" => Handler\DoctrineHandler::class,
         "mysqli" => Handler\MySQLiHandler::class,
         "PDO" => Handler\PDOHandler::class
     ];
